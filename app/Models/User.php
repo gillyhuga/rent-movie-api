@@ -38,6 +38,9 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array
      */
+    public function movies(){
+        return $this->belongsToMany('App\Models\Movie');
+    }
     public function getJWTIdentifier() {
         return $this->getKey();
     }
