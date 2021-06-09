@@ -10,7 +10,9 @@ class Movie extends Model
     use HasFactory;
     protected $guarded = [];
     // protected $table = 'news';
+    
+    
     public function users(){
-        return $this->belongsToMany('App\Models\User');
+        return $this->belongsToMany(User::class);
     }
 }

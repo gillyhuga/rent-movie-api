@@ -32,5 +32,6 @@ Route::get('all/{id}', [MoviesController::class, 'get_all']);
 Route::get('available', [MoviesController::class, 'get_available']);
 Route::get('available/{id}', [MoviesController::class, 'get_available']);
 
+Route::get('/rent/list', [RentController::class, 'rent_list']);
 Route::post('/rent/{id_movie}', [RentController::class, 'rent']);
 Route::delete('/rent/{id_movie}', [RentController::class, 'unrent']);

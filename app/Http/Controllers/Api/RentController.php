@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RentMovie;
 use App\Models\Movie;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
@@ -85,6 +86,28 @@ class RentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function rent_list()
+    {
+        $user_id = Auth::guard('api')->user()->id;
+        
+        
+        $data = User::where('id', $user_id)->with('movies')->get()->first();
+        return response()->json([
+            'success' => true,
+            'data' => $data,
+        ], 200);
+
+        // $check = RentMovie::where('user_id', $user_id)->where('movie_id', $movie_id)->first();
+        // if(!empty($check))
+        // {
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => 'Kamu sudah meminjam film ini'
+        //     ]);
+        // }
+            
     }
 
     public function rent(Request $request, $id_movie)
