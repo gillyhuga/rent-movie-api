@@ -42,7 +42,7 @@ class AuthController extends Controller
             return response()->json(['success' => false, 'message' => $errors]);
         }
 
-        $token = Auth::guard('api')->attempt(['email' => $request->email, 'password' => $request->password, 'role' => 'user']);
+        $token = Auth::guard('api')->attempt(['email' => $request->email, 'password' => $request->password]);
         if(!$token)
         {
             return response()->json(['success' => false, 'message' => ['login' => ['Email dan Password Salah']]]);
