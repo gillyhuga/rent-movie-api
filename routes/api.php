@@ -27,6 +27,7 @@ Route::prefix('auth')->group(function(){
     Route::post('logout', [AuthController::class, 'logout']);
 });
 
+Route::get('new', [MoviesController::class, 'new']);
 Route::get('all', [MoviesController::class, 'get_all']);
 Route::get('all/{id}', [MoviesController::class, 'get_all']);
 Route::get('available', [MoviesController::class, 'get_available']);
