@@ -28,6 +28,7 @@ Route::prefix('auth')->group(function(){
 
 Route::group(['middleware' => 'auth:api'], function(){
     Route::prefix('admin')->group(function(){
+        Route::get('user', [MoviesController::class, 'user_list']);
         Route::post('add', [MoviesController::class, 'add_movie']);
         Route::delete('remove/{id_movie}', [MoviesController::class, 'remove_movie']);
     });

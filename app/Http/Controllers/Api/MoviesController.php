@@ -153,4 +153,35 @@ class MoviesController extends Controller
             'message' => 'Berhasil menghapus Film'
         ], 200);
     }
+
+    public function user_list()
+    {
+        $user_id = Auth::guard('api')->user()->id;
+               
+        $check = User::where('id', $user_id)->where('role', 'admin')->first();
+        
+
+        if (!$check) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Login Sebagai Admin'
+            ]);
+        }
+
+
+        $user = User::where('role', 'user')->get();
+        if(empty($user))
+        {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tidak ada User'
+            ]);
+        }
+        
+
+        return response()->json([
+            'success' => true,
+            'message' => $user
+        ], 200);
+    }
 }
