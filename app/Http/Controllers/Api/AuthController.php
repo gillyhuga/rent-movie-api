@@ -53,7 +53,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Auth::logout(); // menghapus session yang aktif
+        Auth::logout(); 
         return response()->json(['message' => 'User successfully signed out']);
     }
 

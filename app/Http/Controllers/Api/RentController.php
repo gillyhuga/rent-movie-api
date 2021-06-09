@@ -114,10 +114,30 @@ class RentController extends Controller
                 'success' => true,
                 'message' => 'Film berasil dipinjam'
             ], 200);
-        
+    }
 
-        
+    public function unrent($id_movie)
+    {
+        $user_id = Auth::guard('api')->user()->id;
+        $movie_id = $id_movie;
 
-        
+        $check = RentMovie::where('user_id', $user_id)->where('movie_id', $movie_id)->first();
+        if(empty($check))
+        {
+            return response()->json([
+                'success' => false,
+                'message' => 'Belum meminjam film ini'
+            ]);
+        }
+        $update = Movie::find($id_movie);
+            $update->status = '0';
+            $update->save();
+
+        $delete = $check->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Berhasil mengembalikan film'
+        ], 200);
     }
 }

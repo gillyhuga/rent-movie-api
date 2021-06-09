@@ -42,9 +42,7 @@ class MoviesController extends Controller
             return response()->json(
                 [
                     'success' => true,
-                    'data' => Movie::where(
-                        'id', $id &
-                        'status', '0')->get(),
+                    'data' => Movie::where('id', $id)->where('status', '0')->get(),
                 ]
             );
         }
